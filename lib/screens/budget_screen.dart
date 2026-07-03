@@ -98,7 +98,7 @@ class _BudgetScreenState extends ConsumerState<BudgetScreen> {
         return 'Amazing! You have reached your savings goal this month. Keep it up!';
       }
       if (isWarning) {
-        return 'Seems like you are struggling with your budget this month. Slow down a little!';
+        return 'Looks like you are struggling with your budget this month. Slow down a little!';
       }
       return 'Great job! You are within your budget and saving well. Keep it up!';
     }

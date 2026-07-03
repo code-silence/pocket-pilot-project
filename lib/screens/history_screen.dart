@@ -20,8 +20,6 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
   String _selectedCategory = 'All';
   String _selectedPeriod = 'All time';
 
-  final List<String> _categories = ['All', ...AppCategories.all];
-
   final List<String> _periods = ['All time', 'This week', 'This month'];
 
   @override
@@ -69,6 +67,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final categories = ['All', ...AppCategories.all];
     final expenses = ref.watch(expenseProvider);
     final selectedMonth = ref.watch(monthProvider);
     final filtered = _filterExpenses(expenses, selectedMonth);
@@ -148,9 +147,9 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemCount: _categories.length,
+              itemCount: categories.length,
               itemBuilder: (context, index) {
-                final cat = _categories[index];
+                final cat = categories[index];
                 final isSelected = _selectedCategory == cat;
                 return GestureDetector(
                   onTap: () => setState(() => _selectedCategory = cat),
@@ -688,6 +687,10 @@ class _ExpenseCard extends ConsumerWidget {
         return {'icon': Icons.favorite, 'color': AppColors.health};
       case 'Education':
         return {'icon': Icons.school, 'color': AppColors.education};
+      case 'Rent':
+        return {'icon': Icons.home, 'color': AppColors.rent};
+      case 'Religious':
+        return {'icon': Icons.auto_awesome, 'color': AppColors.religious};
       default:
         return {'icon': Icons.category, 'color': AppColors.other};
     }

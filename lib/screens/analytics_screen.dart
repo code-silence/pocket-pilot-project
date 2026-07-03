@@ -395,6 +395,10 @@ class _AnalyticsScreenState extends ConsumerState<AnalyticsScreen> {
         return AppColors.health;
       case 'Education':
         return AppColors.education;
+      case 'Rent':
+        return AppColors.rent;
+      case 'Religious':
+        return AppColors.religious;
       default:
         return AppColors.other;
     }

@@ -46,11 +46,26 @@ class DashboardScreen extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
-        title: const Text(
-          'PocketPilot',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: AppColors.primary,
+        title: RichText(
+          text: const TextSpan(
+            children: [
+              TextSpan(
+                text: 'PocketPilot',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  color: AppColors.primary,
+                ),
+              ),
+              TextSpan(
+                text: '  v1.1.0',
+                style: TextStyle(
+                  fontSize: 11,
+                  color: AppColors.textMuted,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
           ),
         ),
         actions: [
@@ -476,6 +491,10 @@ class DashboardScreen extends ConsumerWidget {
         return AppColors.health;
       case 'Education':
         return AppColors.education;
+      case 'Rent':
+        return AppColors.rent;
+      case 'Religious':
+        return AppColors.religious;
       default:
         return AppColors.other;
     }
@@ -493,6 +512,11 @@ class DashboardScreen extends ConsumerWidget {
         return Icons.favorite;
       case 'Education':
         return Icons.school;
+      case 'Rent':
+        return Icons.home;
+      case 'Religious':
+        return Icons
+            .auto_awesome; // or Icons.mosque, depending on your preference
       default:
         return Icons.category;
     }

@@ -27,13 +27,13 @@ class InsightsScreen extends ConsumerWidget {
     final topCategory = categoryTotals.isEmpty
         ? 'None'
         : categoryTotals.entries
-            .reduce((a, b) => a.value > b.value ? a : b)
-            .key;
+              .reduce((a, b) => a.value > b.value ? a : b)
+              .key;
     final topCategoryAmount = categoryTotals.isEmpty
         ? 0.0
         : categoryTotals.entries
-            .reduce((a, b) => a.value > b.value ? a : b)
-            .value;
+              .reduce((a, b) => a.value > b.value ? a : b)
+              .value;
 
     final weekDiff = thisWeek - lastWeek;
     final weekDiffPercent = lastWeek == 0
@@ -76,7 +76,6 @@ class InsightsScreen extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   // ── This month overview ──
                   _sectionTitle('This Month Overview'),
                   const SizedBox(height: 12),
@@ -135,13 +134,13 @@ class InsightsScreen extends ConsumerWidget {
                       color: AppColors.surface,
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                          color: AppColors.accent.withValues(alpha: 0.3)),
+                        color: AppColors.accent.withValues(alpha: 0.3),
+                      ),
                     ),
                     child: Column(
                       children: [
                         Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             _weekStat(
                               'Last week',
@@ -150,7 +149,9 @@ class InsightsScreen extends ConsumerWidget {
                             ),
                             Container(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 6),
+                                horizontal: 12,
+                                vertical: 6,
+                              ),
                               decoration: BoxDecoration(
                                 color: weekDiff > 0
                                     ? Colors.red.shade50
@@ -159,8 +160,7 @@ class InsightsScreen extends ConsumerWidget {
                                 border: Border.all(
                                   color: weekDiff > 0
                                       ? Colors.red.shade200
-                                      : AppColors.accent
-                                          .withValues(alpha: 0.4),
+                                      : AppColors.accent.withValues(alpha: 0.4),
                                 ),
                               ),
                               child: Row(
@@ -200,8 +200,8 @@ class InsightsScreen extends ConsumerWidget {
                           weekDiff > 0
                               ? 'You are spending ${weekDiffPercent.toStringAsFixed(0)}% more than last week. Try to cut back!'
                               : weekDiff < 0
-                                  ? 'Great! You are spending ${weekDiffPercent.toStringAsFixed(0)}% less than last week!'
-                                  : 'Your spending is the same as last week.',
+                              ? 'Great! You are spending ${weekDiffPercent.toStringAsFixed(0)}% less than last week!'
+                              : 'Your spending is the same as last week.',
                           style: TextStyle(
                             fontSize: 13,
                             color: weekDiff > 0
@@ -226,8 +226,8 @@ class InsightsScreen extends ConsumerWidget {
                         color: AppColors.surface,
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                            color:
-                                AppColors.accent.withValues(alpha: 0.3)),
+                          color: AppColors.accent.withValues(alpha: 0.3),
+                        ),
                       ),
                       child: Column(
                         children: categoryTotals.entries.map((entry) {
@@ -238,8 +238,7 @@ class InsightsScreen extends ConsumerWidget {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 14),
                             child: Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
                                   mainAxisAlignment:
@@ -277,16 +276,15 @@ class InsightsScreen extends ConsumerWidget {
                                 ),
                                 const SizedBox(height: 6),
                                 ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(8),
                                   child: LinearProgressIndicator(
                                     value: percent,
                                     minHeight: 6,
                                     backgroundColor: AppColors.accent
                                         .withValues(alpha: 0.2),
-                                    valueColor:
-                                        AlwaysStoppedAnimation<Color>(
-                                            color),
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      color,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -349,8 +347,7 @@ class InsightsScreen extends ConsumerWidget {
 
     // Tip 2 — top category
     if (topCategory != 'None' && totalSpent > 0) {
-      final percent =
-          ((topCategoryAmount / totalSpent) * 100).toInt();
+      final percent = ((topCategoryAmount / totalSpent) * 100).toInt();
       if (percent >= 50) {
         tips.add({
           'icon': Icons.pie_chart,
@@ -489,10 +486,7 @@ class InsightsScreen extends ConsumerWidget {
           const SizedBox(height: 10),
           Text(
             label,
-            style: const TextStyle(
-              fontSize: 11,
-              color: AppColors.textMuted,
-            ),
+            style: const TextStyle(fontSize: 11, color: AppColors.textMuted),
           ),
           const SizedBox(height: 4),
           Text(
@@ -515,10 +509,7 @@ class InsightsScreen extends ConsumerWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(
-            fontSize: 12,
-            color: AppColors.textMuted,
-          ),
+          style: const TextStyle(fontSize: 12, color: AppColors.textMuted),
         ),
         const SizedBox(height: 4),
         Text(
@@ -573,12 +564,22 @@ class InsightsScreen extends ConsumerWidget {
 
   Color _categoryColor(String category) {
     switch (category) {
-      case 'Food': return AppColors.food;
-      case 'Transport': return AppColors.transport;
-      case 'Shopping': return AppColors.shopping;
-      case 'Health': return AppColors.health;
-      case 'Education': return AppColors.education;
-      default: return AppColors.other;
+      case 'Food':
+        return AppColors.food;
+      case 'Transport':
+        return AppColors.transport;
+      case 'Shopping':
+        return AppColors.shopping;
+      case 'Health':
+        return AppColors.health;
+      case 'Education':
+        return AppColors.education;
+      case 'Rent':
+        return AppColors.rent;
+      case 'Religious':
+        return AppColors.religious;
+      default:
+        return AppColors.other;
     }
   }
 }
